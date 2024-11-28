@@ -20,9 +20,9 @@ num_jobs=8
 
 usage() {
   echo "Usage: bash build_llvm.bash -o INSTALL_PREFIX -p PLATFORM -c CONFIG [-a ARCH] [-j NUM_JOBS]"
-  echo "Ex: bash build_llvm.bash -o llvm-16.0.0-x86_64-linux-gnu-ubuntu-18.04 -p docker_ubuntu-18.04 -c assert -j 16"
+  echo "Ex: bash build_llvm.bash -o llvm-16.0.0-x86_64-linux-gnu-ubuntu-22.04 -p docker_ubuntu-22.04 -c assert -j 16"
   echo "INSTALL_PREFIX = <string> # \${INSTALL_PREFIX}.tar.xz is created"
-  echo "PLATFORM       = {local|docker_ubuntu_18.04|docker_centos7}"
+  echo "PLATFORM       = {local|docker_ubuntu_22.04|docker_centos7}"
   echo "CONFIG         = {release|assert|debug}"
   echo "ARCH           = {x86|arm64}"
   echo "NUM_JOBS       = {1|2|3|...}"
@@ -87,7 +87,7 @@ if [ x"$platform" == x"local" ]; then
   make -j${num_jobs} install
   tar -cJf "${CURRENT_DIR}/${install_prefix}.tar.xz" "$install_prefix"
   popd
-elif [ x"$platform" == x"docker_ubuntu-18.04" ] || 
+elif [ x"$platform" == x"docker_ubuntu-22.04" ] || 
      [ x"$platform" == x"docker_centos-7" ]; then
   # Prepare build directories
   cp -r "$SOURCE_DIR/scripts" "$BUILD_DIR/scripts"
